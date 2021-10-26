@@ -23,9 +23,7 @@
           <tr class='btn' style="backgroundColor:LightCoral">
             <th></th>
             <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
-            <th ></th>
             <th @click="dayCountingList.second = dayCountingList.second + 10">+10</th>
-            <th ></th>
           </tr>
           <tr >
             <th>{{dayTotal}}</th>
@@ -161,7 +159,7 @@ export default {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 500%;
+  font-size: 400%;
   color: darkgreen;
 }
 #app {
