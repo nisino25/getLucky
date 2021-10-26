@@ -6,42 +6,36 @@
         <tr>
           <th>合計</th>
           <th>50%</th>
-          <th>25%</th>
-          <th>22.5%</th>
+          <th>27.5%</th>
           <th>2.5%</th>
         </tr>
 
         <tr>
           <th></th>
           <th>ピジョン</th>
-          <th>ハネッコ</th>
-          <th>ポポッコ</th>
+          <th>綿</th>
           <th>ラッキー</th>
         </tr>
         <tr class='btn' style="backgroundColor:CornflowerBlue">
           <th></th>
           <th @click="dayCountingList.first = dayCountingList.first + 1">+1</th>
           <th @click="dayCountingList.second = dayCountingList.second + 1">+1</th>
-          <th @click="dayCountingList.third = dayCountingList.third + 1">+1</th>
           <th @click="dayCountingList.fourth = dayCountingList.fourth + 1; lastTime= dayTotal">+1</th>
         </tr>
         <tr class='btn' style="backgroundColor:LightCoral">
           <th></th>
           <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
           <th @click="dayCountingList.second = dayCountingList.second + 5">+5</th>
-          <th @click="dayCountingList.third = dayCountingList.third + 5">+5</th>
           <th ></th>
         </tr>
         <tr >
           <th>{{dayTotal}}</th>
           <th>{{dayCountingList.first}}</th>
           <th>{{dayCountingList.second}}</th>
-          <th>{{dayCountingList.third}}</th>
           <th>{{dayCountingList.fourth}}</th>
         </tr>
         <tr class='empty'>
           <th>&nbsp;</th>
-          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -50,7 +44,6 @@
           <th>100%</th>
           <th>{{chanceList.first}}%</th>
           <th>{{chanceList.second}}%</th>
-          <th>{{chanceList.third}}%</th>
           <th>{{chanceList.fourth}}%</th>
         </tr>
 
@@ -164,7 +157,7 @@ table, th, td {
 }
 
 .btn{
-  height: 230px;
+  height: 225px;
 }
 .empty{
   height: 50px;
