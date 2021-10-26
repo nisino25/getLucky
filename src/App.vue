@@ -5,45 +5,38 @@
       <table style="width:100%">
         <tr>
           <th>合計</th>
-          <th>50%</th>
-          <th>27.5%</th>
+          <th>97.5%</th>
           <th>2.5%</th>
         </tr>
 
         <tr>
           <th></th>
-          <th>ピジョン</th>
-          <th>綿</th>
+          <th>その他</th>
           <th>ラッキー</th>
         </tr>
         <tr class='btn' style="backgroundColor:CornflowerBlue">
           <th></th>
           <th @click="dayCountingList.first = dayCountingList.first + 1">+1</th>
-          <th @click="dayCountingList.second = dayCountingList.second + 1">+1</th>
           <th @click="dayCountingList.fourth = dayCountingList.fourth + 1; lastTime= dayTotal">+1</th>
         </tr>
         <tr class='btn' style="backgroundColor:LightCoral">
           <th></th>
           <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
-          <th @click="dayCountingList.second = dayCountingList.second + 5">+5</th>
           <th ></th>
         </tr>
         <tr >
           <th>{{dayTotal}}</th>
-          <th>{{dayCountingList.first}}</th>
-          <th>{{dayCountingList.second}}</th>
+          <th>{{dayTotal - dayCountingList.fourth}}</th>
           <th>{{dayCountingList.fourth}}</th>
         </tr>
         <tr class='empty'>
           <th>&nbsp;</th>
           <th></th>
           <th></th>
-          <th></th>
         </tr>
         <tr >
           <th>100%</th>
-          <th>{{chanceList.first}}%</th>
-          <th>{{chanceList.second}}%</th>
+          <th>{{100 -chanceList.fourth}}%</th>
           <th>{{chanceList.fourth}}%</th>
         </tr>
 
