@@ -23,14 +23,14 @@
           <th @click="dayCountingList.first = dayCountingList.first + 1">+1</th>
           <th @click="dayCountingList.second = dayCountingList.second + 1">+1</th>
           <th @click="dayCountingList.third = dayCountingList.third + 1">+1</th>
-          <th @click="dayCountingList.fourth = dayCountingList.fourth + 1">+1</th>
+          <th @click="dayCountingList.fourth = dayCountingList.fourth + 1; lastTime= dayTotal">+1</th>
         </tr>
         <tr class='btn' style="backgroundColor:LightCoral">
           <th></th>
           <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
           <th @click="dayCountingList.second = dayCountingList.second + 5">+5</th>
           <th @click="dayCountingList.third = dayCountingList.third + 5">+5</th>
-          <th @click="dayCountingList.fourth = dayCountingList.fourth + 5">+5</th>
+          <th ></th>
         </tr>
         <tr >
           <th>{{dayTotal}}</th>
@@ -55,6 +55,8 @@
         </tr>
 
       </table>
+
+      <h5>{{dayTotal - lastTime}} pokemon since Lasgt appearence of Lucky </h5>
     </div>
   <div v-else>
     <h1>yo</h1>
@@ -76,7 +78,9 @@ export default {
       nightCountingList: {first:0,second:0,third:0,fourth:0},
       currentTime: 'day',
       name:'nozo',
-      developing: true
+      developing: true,
+      countingSince: 0,
+      lastTime: 0,
       
 
     }
@@ -93,8 +97,10 @@ export default {
     this.dayCountingList = JSON.parse(localStorage.dayCountingList);
   }else{
     console.log('welcome new user')
-  
+  }
 
+  if(localStorage.lastTime){
+    this.lastTime = JSON.parse(localStorage.lastTime);
   }
   
     // console.log(this.candidate[1])
@@ -128,14 +134,18 @@ export default {
   },
   watch:{
 
-  
-  dayCountingList: {
-      deep:true,
-      handler() {
-        localStorage.dayCountingList = JSON.stringify(this.dayCountingList);
+    dayCountingList: {
+        deep:true,
+        handler() {
+          localStorage.dayCountingList = JSON.stringify(this.dayCountingList);
+        }
+      },
+      lastTime: function(){
+        localStorage.lastTime = JSON.stringify(this.lastTime);
       }
-    },
-  }
+  },
+    
+
 }
 </script>
 
