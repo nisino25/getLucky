@@ -2,47 +2,57 @@
 <body>
   <div class="wrapper">
     <div  v-if="currentTime === 'day'">
-      <table style="width:100%">
-        <tr>
-          <th>合計</th>
-          <th>97.5%</th>
-          <th>2.5%</th>
-        </tr>
+      <transition name="slide-fade">
+        <table style="width:100%" v-if="!justUpdated">
+          <tr>
+            <th>合計</th>
+            <th>97.5%</th>
+            <th>2.5%</th>
+          </tr>
 
-        <tr>
-          <th></th>
-          <th>その他</th>
-          <th>ラッキー</th>
-        </tr>
-        <tr class='btn' style="backgroundColor:CornflowerBlue">
-          <th></th>
-          <th @click="dayCountingList.first = dayCountingList.first + 1">+1</th>
-          <th @click="dayCountingList.fourth = dayCountingList.fourth + 1; lastTime= dayTotal">+1</th>
-        </tr>
-        <tr class='btn' style="backgroundColor:LightCoral">
-          <th></th>
-          <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
-          <th ></th>
-        </tr>
-        <tr >
-          <th>{{dayTotal}}</th>
-          <th>{{dayTotal - dayCountingList.fourth}}</th>
-          <th>{{dayCountingList.fourth}}</th>
-        </tr>
-        <tr class='empty'>
-          <th>&nbsp;</th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr >
-          <th>100%</th>
-          <th>{{100 -chanceList.fourth}}%</th>
-          <th>{{chanceList.fourth}}%</th>
-        </tr>
+          <tr>
+            <th></th>
+            <th>その他</th>
+            <th>ラッキー</th>
+          </tr>
+          <tr class='btn' style="backgroundColor:CornflowerBlue">
+            <th></th>
+            <th @click="dayCountingList.first = dayCountingList.first + 1">+1</th>
+            <th @click="dayCountingList.fourth = dayCountingList.fourth + 1; lastTime= dayTotal">+1</th>
+          </tr>
+          <tr class='btn' style="backgroundColor:LightCoral">
+            <th></th>
+            <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
+            <th ></th>
+          </tr>
+          <tr >
+            <th>{{dayTotal}}</th>
+            <th>{{dayTotal - dayCountingList.fourth}}</th>
+            <th>{{dayCountingList.fourth}}</th>
+          </tr>
+          <tr class='empty'>
+            <th>&nbsp;</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr >
+            <th>100%</th>
+            <th>{{100 -chanceList.fourth}}%</th>
+            <th>{{chanceList.fourth}}%</th>
+          </tr>
 
-      </table>
+        </table>
+        
+        <div class="container" v-else>
+          <div>
+            <h2  class='message'>Just Updated!</h2>
+          </div>
+        </div>
+        
+      </transition>
 
-      <h5>{{dayTotal - lastTime}} pokemon since Lasgt appearence of Lucky </h5>
+
+      <h5 v-if="!justUpdated">{{dayTotal - lastTime}} pokemon since Lasgt appearence of Lucky </h5>
     </div>
   <div v-else>
     <h1>yo</h1>
@@ -67,6 +77,7 @@ export default {
       developing: true,
       countingSince: 0,
       lastTime: 0,
+      justUpdated: false,
       
 
     }
@@ -124,6 +135,12 @@ export default {
         deep:true,
         handler() {
           localStorage.dayCountingList = JSON.stringify(this.dayCountingList);
+          console.log('changed')
+          this.justUpdated = true
+          setTimeout(() =>{
+            console.log('been 1 sec')
+            this.justUpdated = false
+          },1500)
         }
       },
       lastTime: function(){
@@ -136,6 +153,15 @@ export default {
 </script>
 
 <style>
+
+.message{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 800%;
+  color: darkgreen;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -154,5 +180,19 @@ table, th, td {
 }
 .empty{
   height: 50px;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
