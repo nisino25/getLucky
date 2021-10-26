@@ -24,6 +24,8 @@
             <th></th>
             <th @click="dayCountingList.first = dayCountingList.first + 5">+5</th>
             <th ></th>
+            <th @click="dayCountingList.second = dayCountingList.second + 10">+10</th>
+            <th ></th>
           </tr>
           <tr >
             <th>{{dayTotal}}</th>
