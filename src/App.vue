@@ -140,7 +140,7 @@ export default {
           setTimeout(() =>{
             console.log('been 1 sec')
             this.justUpdated = false
-          },1500)
+          },1000)
         }
       },
       lastTime: function(){
@@ -159,7 +159,7 @@ export default {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 800%;
+  font-size: 500%;
   color: darkgreen;
 }
 #app {
