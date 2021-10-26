@@ -164,7 +164,7 @@ table, th, td {
 }
 
 .btn{
-  height: 250px;
+  height: 230px;
 }
 .empty{
   height: 50px;
